@@ -1,6 +1,6 @@
 {
-  "name": "walmart-sdk",
-  "version": "2.3.4",
+  "name": "walmart-mws",
+  "version": "1.0.0",
   "description": "Walmart Marketplace SDK",
   "main": "src/walmart-sdk.js",
   "license": "MIT",
@@ -10,7 +10,7 @@
   "keywords": [
     "walmart",
     "seller",
-    "walmart sdk",
+    "walmart mws",
     "api walmart",
     "javascript",
     "nodejs"
@@ -26,6 +26,6 @@
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/drbarzaga/walmart-sdk.git"
+    "url": "git://github.com/drbarzaga/walmart-mws.git"
   }
 }
