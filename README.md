@@ -432,3 +432,7 @@ Package | Version
 [axios](https://www.npmjs.com/package/axios) | 0.19.2 
 [moment](https://www.npmjs.com/package/moment) | 2.27.0
 [querystring](https://www.npmjs.com/package/querystring) | 0.2.0
+
+## Report Issue
+
+[Open New Issue](https://github.com/drbarzaga/walmart-mws/issues/new)
