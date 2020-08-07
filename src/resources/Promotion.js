@@ -1,6 +1,7 @@
 module.exports = function(httpClient, version){
     let service = {
-        getPromotionalPrices: getPromotionalPrices
+        getPromotionalPrices: getPromotionalPrices,
+        updatePromotionalPrice: updatePromotionalPrice
     };
     return service;
 
@@ -15,5 +16,13 @@ module.exports = function(httpClient, version){
         } catch (error) {
             throw error;
         }
+    }
+
+    /**
+     * Updates the promotional price.
+     * @param {Boolean} promo 
+     */
+    async function updatePromotionalPrice(promo){
+
     }
 }
