@@ -375,6 +375,7 @@ try {
 ```
 
 ### Update Promotional Price
+Updates the promotional price.
 Sellers can update or delete an existing promotional price as well as set up a new promotional price.
  - To set a new promotional price or update an existing one, set the XML pricing attribute **processMode** to **UPSERT**
  - To delete a promotional price, set the XML pricing attribute **processMode** to **DELETE**.
