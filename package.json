@@ -8,12 +8,18 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
-    "walmart",
-    "seller",
-    "walmart mws",
-    "api walmart",
-    "javascript",
-    "nodejs"
+    "Walmart",
+    "Seller",
+    "Walmart MWS",
+    "Api Walmart",
+    "JavaScript",
+    "NodeJs",
+    "Walmart MWS Items",
+    "Walmart MWS Feeds",
+    "Walmart MWS Inventory",
+    "Walmart MWS Orders",
+    "Walmart MWS Price",
+    "Walmart MWS Reports"
   ],
   "author": {
     "name": "Dayan Perez",
