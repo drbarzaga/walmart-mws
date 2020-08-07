@@ -2,12 +2,26 @@
 
 This is a wrapper sdk around the [Walmart Marketplace API](https://developer.walmart.com). To used this sdk you will need an developer account with the **ClientId** and **ClientSecret** keys.
 
+## Table of Contents
+
+- [Installation](#installation)
+- [Configuraion](#configuration)
+- [Feeds](#feeds)
+- [Items](#items)
+- [Promotions](#promotions)
+- [Inventory](#inventory)
+- [Dependencies](#dependencies)
+- [Issues](#issues)
+- [License](#license)
+- [Donation](#donation)
+
+
 ## Installation
 ```bash
 npm install walmart-mws
 ```
 
-## Configuration Using JavaScript
+## Configuration
 ```js
 var walmartMws = require('walmart-mws')(
     'WAL_CLIENT_ID',
@@ -60,7 +74,7 @@ try {
 }
 ```
 
-## Get All Feed Status
+### Get All Feed Status
 **Request:**
 
 Available Parameters:<br>
@@ -433,7 +447,7 @@ Package | Version
 [moment](https://www.npmjs.com/package/moment) | 2.27.0
 [querystring](https://www.npmjs.com/package/querystring) | 0.2.0
 
-## Report Issue
+## Issues
 
 [Open New Issue](https://github.com/drbarzaga/walmart-mws/issues/new)
 
@@ -442,3 +456,8 @@ Package | Version
 [![License](http://img.shields.io/:license-mit-blue.svg?style=flat-square)](http://badges.mit-license.org)
 
 - **[MIT license](http://opensource.org/licenses/mit-license.php)**
+
+## Donation
+If this project help you reduce time to develop, you can give me a cup of coffee :) 
+
+[![paypal](https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=ZM8XFZCQS9C5A&source=url)
