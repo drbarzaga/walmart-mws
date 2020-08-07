@@ -4,12 +4,12 @@ This is a wrapper sdk around the [Walmart Marketplace API](https://developer.wal
 
 ## Installation
 ```bash
-npm install walmart-sdk
+npm install walmart-mws
 ```
 
 ## Configuration Using JavaScript
 ```js
-var walmartSdk = require('walmart-sdk')(
+var walmartMws = require('walmart-mws')(
     'WAL_CLIENT_ID',
     'WAL_SECRET_KEY', 
     'HOST', 
@@ -34,7 +34,7 @@ offset | Number | No | 0
 
 ```js
 try {
-    const result = await walmartSdk.feeds.getFeedStatus('5EF8AB43C8B949EAA6DFCDE98FCB3017@AQkBCgB');
+    const result = await walmartMws.feeds.getFeedStatus('5EF8AB43C8B949EAA6DFCDE98FCB3017@AQkBCgB');
 } catch (error) {    
 }
 ```
@@ -73,7 +73,7 @@ offset | Number | No | 0
 
 ```js
 try {
-    const result = await walmartSdk.feeds.getAllFeedStatus();
+    const result = await walmartMws.feeds.getAllFeedStatus();
 } catch (error) {    
 }
 ```
@@ -129,7 +129,7 @@ publishedStatus | String | No |
 
 ```js
 try {
-    const result = await walmartSdk.items.getAllItems();
+    const result = await walmartMws.items.getAllItems();
 } catch (error) {    
 }
 ```
@@ -175,7 +175,7 @@ sku | String | **Yes** |
 
 ```js
 try {
-    const result = await walmartSdk.items.getItem('192339252042022');
+    const result = await walmartMws.items.getItem('192339252042022');
 } catch (error) {    
 }
 ```
@@ -216,7 +216,7 @@ subcategoryId | String | No |
 
 ```js
 try {
-    const result = await walmartSdk.items.getTaxonomy('Search');
+    const result = await walmartMws.items.getTaxonomy('Search');
 } catch (error) {    
 }
 ```
@@ -235,7 +235,7 @@ sku | String | <span style="color: red">**Yes**</span> |
 
 ```js
 try {
-    const result = await walmartSdk.items.retireItem('97964898989');
+    const result = await walmartMws.items.retireItem('97964898989');
 } catch (error) {    
 }
 ```
@@ -263,7 +263,7 @@ file | String | <span style="color: red">**Yes**</span> |
 
 ```js
 try {
-    const result = await walmartSdk.items.bulkRetireItem('RETIRE_ITEM', file);
+    const result = await walmartMws.items.bulkRetireItem('RETIRE_ITEM', file);
 } catch (error) {    
 }
 ```
@@ -275,6 +275,93 @@ try {
   errors: null
 }
 ```
+
+## Promotions
+
+### Promotional Prices
+**Request:**
+
+Available Parameters:<br>
+Name| Type | Required | Default
+--- | :---: | :---: | :---:
+sku | String | <span style="color: red">**Yes**</span> |
+<br>
+
+```js
+try {
+    const result = await walmartMws.promotions.getPromotionalPrices('97964787878');
+} catch (error) {    
+}
+```
+
+**Response:**
+```js
+{
+    status: "OK",
+    header: {
+      headerAttributes: null
+    },
+    payload: {
+      itemIdentifier: {
+        sku: "97964787878"
+      },
+      pricingList: {
+        pricing: [
+          {
+            currentPrice: {
+              value: {
+                value: null,
+                currency: "USD",
+                amount: 4.00
+              },
+              uomType: null,
+              minValue: null,
+              maxValue: null,
+              perUnitValue: null,
+              minUnitValue: null,
+              maxUnitValue: null
+            },
+            currentPriceType: "REDUCED",
+            comparisonPrice: {
+              value: {
+                value: null,
+                currency: "USD",
+                amount: 4.00
+              },
+              uomType: null,
+              minValue: null,
+              maxValue: null,
+              perUnitValue: null,
+              minUnitValue: null,
+              maxUnitValue: null
+            },
+            comparisonPriceType: "BASE",
+            savingsAmount: 0.00,
+            savingsPercent: 0.00,
+            priceDisplayCodes: {
+              isRollback: false,
+              isStrikethrough: true,
+              isReducedPrice: true,
+              isClearance: false,
+              hidePriceForSOI: null,
+              isEligibleForAssociateDiscount: null,
+              submapType: null
+            },
+            effectiveDate: 1572774597943,
+            expirationDate: 1575366597943,
+            promoId: "ce9dfbce-4043-442c-8cb9-77d39d0f727f",
+            processMode: null
+          }
+        ],
+        replaceAll: false
+      },
+      maxSalesRetailPrice: null,
+      minAdvtPrice: null,
+      rebate: null
+    }
+  }
+```
+
 
 ## Inventory
 
@@ -289,7 +376,7 @@ sku | String | <span style="color: red">**Yes**</span> |
 
 ```js
 try {
-    const result = await walmartSdk.inventory.getItemInventory('192503120522');
+    const result = await walmartMws.inventory.getItemInventory('192503120522');
 } catch (error) {    
 }
 ```
@@ -323,7 +410,7 @@ let data = {
     }
 };
 try {
-    const result = await walmartSdk.inventory.updateItemInventory('192503120522', data);
+    const result = await walmartMws.inventory.updateItemInventory('192503120522', data);
 } catch (error) {    
 }
 ```

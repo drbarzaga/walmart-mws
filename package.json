@@ -2,7 +2,7 @@
   "name": "walmart-mws",
   "version": "1.0.0",
   "description": "Walmart Marketplace SDK",
-  "main": "src/walmart-sdk.js",
+  "main": "src/walmart-mws.js",
   "license": "MIT",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
