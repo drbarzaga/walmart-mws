@@ -20,9 +20,19 @@ module.exports = function(httpClient, version){
 
     /**
      * Updates the promotional price.
-     * @param {Boolean} promo 
+     * @param {Boolean} promo The promotional price. Set to 'true' in order to retrieve promotional prices
+     * @param {Object} data Body for Promotional Pricing, Delete
      */
-    async function updatePromotionalPrice(promo){
-
+    async function updatePromotionalPrice(promo, data){
+        try {
+            const response = await httpClient.put(`${version}/price`, data, {
+                params: {
+                    promo: promo
+                }
+            });
+            return response.data;
+        } catch (error) {
+            throw error;
+        }
     }
 }

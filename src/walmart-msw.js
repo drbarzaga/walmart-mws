@@ -40,7 +40,8 @@ module.exports = function(clientId, secretKey, host, version, name){
         auth: require('./resources/Authentication')(httpClient, version),
         feeds: require('./resources/Feeds')(httpClient, version),
         items: require('./resources/Item')(httpClient, version),
-        inventory: require('./resources/Inventory')(httpClient, version)
+        inventory: require('./resources/Inventory')(httpClient, version),
+        promotions: require('./resources/Promotion')(httpClient, version)
     })
     return wms;
 }

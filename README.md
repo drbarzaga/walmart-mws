@@ -374,6 +374,77 @@ try {
   }
 ```
 
+### Update Promotional Price
+Sellers can update or delete an existing promotional price as well as set up a new promotional price.
+ - To set a new promotional price or update an existing one, set the XML pricing attribute **processMode** to **UPSERT**
+ - To delete a promotional price, set the XML pricing attribute **processMode** to **DELETE**.
+ - To delete all promotions for a SKU, set **replaceAll** to an empty payload.
+
+Available Parameters:<br>
+Name| Type | Required | Default
+--- | :---: | :---: | :---:
+promo | Boolean | <span style="color: red">**Yes**</span> |
+data | Object | <span style="color: red">**Yes**</span> |
+<br>
+
+Example of data object:
+```js
+let data = {
+    sku: "97964_KFTest",
+    pricing: [{
+      currentPrice: {
+        currency: "USD",
+        amount: 4
+      },
+      currentPriceType: "REDUCED",
+      comparisonPriceType: "BASE",
+      comparisonPrice: {
+        currency: "USD",
+        amount: 4
+      },
+      priceDisplayCodes: "CART",
+      effectiveDate: "2019-11-03T09:49:57.943Z",
+      expirationDate: "2019-12-03T09:49:57.943Z",
+      processMode: "UPSERT"
+    }]
+}
+```
+
+Sample of Usage method **updatePromotionalPrice**
+```js
+try {
+    const result = await walmartMws.promotions.updatePromotionalPrice(true, data)
+} catch (error) {    
+}
+```
+
+Sample of Response
+```js
+{
+    PriceHeader: {
+      version: "1.7"
+    },
+    Price: [{
+      sku: "30348_KFTest",
+      pricing: [{
+        currentPrice: {
+          currency: "USD",
+          amount: 4
+        },
+        currentPriceType: "REDUCED",
+        comparisonPriceType: "BASE",
+        comparisonPrice: {
+          currency: "USD",
+          amount: 4
+        },
+        priceDisplayCodes: "CART",
+        effectiveDate:"2019-11-09T21:29:39.420Z",
+        expirationDate:"2019-12-09T21:29:39.420Z",
+        processMode: "DELETE"
+      }]
+    }]
+}
+```
 
 ## Inventory
 
