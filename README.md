@@ -33,7 +33,7 @@ var walmartMws = require('walmart-mws')(
 ## Feeds
 
 ### Get Feed Status
-**Request:**
+Returns the feed status for a specified Feed ID.
 
 Available Parameters:<br>
 Name| Type | Required | Default
@@ -43,6 +43,8 @@ includeDetails | Boolean | No | false
 limit | Number | No | 50
 offset | Number | No | 0
 <br>
+
+**Usage:**
 
 ```js
 try {
@@ -73,7 +75,7 @@ try {
 ```
 
 ### Get All Feed Status
-**Request:**
+Returns the feed statuses for all the specified Feed IDs.
 
 Available Parameters:<br>
 Name| Type | Required | Default
@@ -82,6 +84,8 @@ feedId | String | No
 limit | Number | No | 50
 offset | Number | No | 0
 <br>
+
+**Usage:**
 
 ```js
 try {
@@ -126,7 +130,7 @@ try {
 ## Items
 
 ### Get All Items
-**Request:**
+Displays a list of all items.
 
 Available Parameters:<br>
 Name| Type | Required | Default
@@ -138,6 +142,8 @@ offset | Number | No | 0
 lifecycleStatus | String | No |
 publishedStatus | String | No |
 <br>
+
+**Usage:**
 
 ```js
 try {
@@ -177,13 +183,15 @@ try {
 ```
 
 ### Get Item Details
-**Request:**
+Retrieves an item and displays the item details
 
 Available Parameters:<br>
 Name| Type | Required | Default
 --- | :---: | :---: | :---:
 sku | String | **Yes** |
 <br>
+
+**Usage:**
 
 ```js
 try {
@@ -215,7 +223,13 @@ try {
 ```
 
 ### Get Taxonomy
-**Request:** 
+
+The Taxonomy API exposes the category taxonomy that Walmart.com uses to categorize items. It describes the Departments, Categories, and Subcategories levels available on Walmart.com. You can specify the exact category as a parameter when using any of the following APIs:
+ - Search
+ - Data feeds
+ - Special feeds, to includePre-order, Best Sellers, Rollbacks, Clearance, and Special Buys
+
+For example, you can restrict the Search API to search within a category by supplying the ID through the taxonomy. Similarly, you can use the Feed API to download category-specific feeds by specifying a category ID.
 
 Available Parameters:<br>
 Name| Type | Required | Default
@@ -226,6 +240,8 @@ subcategoryName | String | No |
 subcategoryId | String | No |
 <br>
 
+**Usage:**
+
 ```js
 try {
     const result = await walmartMws.items.getTaxonomy('Search');
@@ -233,8 +249,49 @@ try {
 }
 ```
 
+**Response:**
+```js
+{
+    status: "SUCCESS",
+    payload: [
+        {
+            category: "Animal",
+            subcategory: [
+                {
+                    subCategoryName: "Animal Accessories",
+                    subCategoryId: "559c5d924fff3d64de18bf45"
+                },
+                {
+                    subCategoryName: "Animal Food",
+                    subCategoryId: "559c5d8f4fff3d64de18bf3d"
+                },
+                {
+                    subCategoryName: "Animal Health & Grooming",
+                    subCategoryId: "559c5d90ed25b136f13a05df"
+                },
+                {
+                    subCategoryName: "Animal Other",
+                    subCategoryId: "56f2eb66208f9a06158f1748"
+                }
+            ]
+        },
+        {
+            category: "Art & Craft",
+            subcategory: [
+                {
+                    subCategoryName: "Art & Craft",
+                    subCategoryId: "571fdff7208f9a0cdb760a7f"
+                }
+            ]
+        }
+    ]
+}
+```
+
 ### Retire Item
-**Request:**
+Completely deactivates and unpublishes an item from the site.
+
+Retired items are not displayed on Walmart.com, but their content stays intact in our system. You can republish an item by providing future discontinue date for the item.
 
 Available Parameters:<br>
 Name| Type | Required | Default
@@ -255,15 +312,15 @@ try {
 **Response:**
 ```js
 {
-  "sku": "97964898989",
-  "message": "Thank you.  Your item has been submitted for retirement from Walmart Catalog.  Please note that it can take up to 48 hours for items to be retired from our catalog.",
-  "additionalAttributes": null,
-  "errors": null
+  sku: "97964898989",
+  message: "Thank you.  Your item has been submitted for retirement from Walmart Catalog.  Please note that it can take up to 48 hours for items to be retired from our catalog.",
+  additionalAttributes: null,
+  errors: null
 }
 ```
 
 ### Bulk Item Retire
-**Request:**
+Completely deactivates and unpublishes items in bulk from the site.
 
 Available Parameters:<br>
 Name| Type | Required | Default
@@ -273,6 +330,8 @@ file | String | <span style="color: red">**Yes**</span> |
 
 <br>
 
+**Usage:**
+
 ```js
 try {
     const result = await walmartMws.items.bulkRetireItem('RETIRE_ITEM', file);
@@ -280,6 +339,7 @@ try {
 }
 ```
 
+**Response:**
 ```js
 {
   feedId: "F129C19240844B97A3C6AD8F1A2C4997@AU8BAQA",
@@ -291,13 +351,15 @@ try {
 ## Promotions
 
 ### Promotional Prices
-**Request:**
+Retrieves a list of promotional prices for a single SKU.
 
 Available Parameters:<br>
 Name| Type | Required | Default
 --- | :---: | :---: | :---:
 sku | String | <span style="color: red">**Yes**</span> |
 <br>
+
+**Usage:**
 
 ```js
 try {
@@ -388,7 +450,6 @@ promo | Boolean | <span style="color: red">**Yes**</span> |
 data | Object | <span style="color: red">**Yes**</span> |
 <br>
 
-Example of data object:
 ```js
 let data = {
     sku: "97964_KFTest",
@@ -411,7 +472,7 @@ let data = {
 }
 ```
 
-Sample of Usage method **updatePromotionalPrice**
+**Usage:**
 ```js
 try {
     const result = await walmartMws.promotions.updatePromotionalPrice(true, data)
@@ -450,7 +511,7 @@ Sample of Response
 ## Inventory
 
 ### Get Item Inventory
-**Request:**
+Return the inventory for a given item
 
 Available Parameters:<br>
 Name| Type | Required | Default
@@ -458,6 +519,7 @@ Name| Type | Required | Default
 sku | String | <span style="color: red">**Yes**</span> |
 <br>
 
+**Usage:**
 ```js
 try {
     const result = await walmartMws.inventory.getItemInventory('192503120522');
@@ -476,7 +538,7 @@ try {
 ```
 
 ### Update Item Inventory
-**Request:**
+Updates the inventory for a given item.
 
 Available Parameters:<br>
 Name| Type | Required | Default
@@ -485,6 +547,7 @@ sku | String | <span style="color: red">**Yes**</span> |
 data| Object | <span style="color: red">**Yes**</span> |
 <br>
 
+**Usage:**
 ```js
 let data = {
     sku:'192503120522',
