@@ -1,6 +1,6 @@
 {
   "name": "walmart-mws",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Walmart Marketplace SDK",
   "main": "src/walmart-mws.js",
   "license": "MIT",
