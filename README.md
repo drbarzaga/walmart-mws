@@ -580,6 +580,29 @@ Package | Version
 [moment](https://www.npmjs.com/package/moment) | 2.27.0
 [querystring](https://www.npmjs.com/package/querystring) | 0.2.0
 
+
+## Next Features
+ Prices:    
+ - Updates the regular price for a given item.
+ - Updates prices in bulk, in one Feed you can update up to 10,000 items in bulk. To ensure optimal Feed processing  time,
+   we recommend sending no more than 1000 items in one Feed and keeping the Feed sizes below 10 MB.
+
+Commission Adjustment Program:
+- Set up the SKU opt-in/opt-out for an individual item.
+- Global opt-in/opt-out for all items.
+
+Reports:
+- Returns all the information associated with Seller's items that are set up on Walmart’s platform.
+- Returns the Buy Box data for a given item.
+- Get a CAP Item Opt-in file
+- Item Performance Report
+
+Reconciliation Management:
+- Get available reconciliation report dates.
+- Get reconciliation report to download.
+- Return Item Overrides Report.
+ 
+
 ## Issues
 
 [Open New Issue](https://github.com/drbarzaga/walmart-mws/issues/new)
