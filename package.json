@@ -4,8 +4,7 @@
   "description": "Walmart Marketplace SDK",
   "main": "src/walmart-mws.js",
   "license": "MIT",
-  "scripts": {   
-  },
+  "scripts": {},
   "keywords": [
     "Walmart",
     "Seller",
