@@ -11,6 +11,7 @@ This is a wrapper sdk around the [Walmart Marketplace API](https://developer.wal
 - [Promotions](#promotions)
 - [Inventory](#inventory)
 - [Dependencies](#dependencies)
+- [Next Features](#next-features)
 - [Issues](#issues)
 - [License](#license)
 - [Donation](#donation)
