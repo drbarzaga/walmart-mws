@@ -2,9 +2,9 @@ require('./global');
 const axios = require('axios');
 let httpClient = null;
 
-module.exports = function (clientId, secretKey, version, name) { // Initialize httpClient custom Axios Instance for WMS
+module.exports = function (clientId, secretKey, version, name, prod_env) { // Initialize httpClient custom Axios Instance for WMS
     httpClient = axios.create({
-        baseURL: 'https://marketplace.walmartapis.com/',
+        baseURL: prod_env ? 'https://marketplace.walmartapis.com/' : 'https://sandbox.walmartapis.com/',
         headers: {
             'WM_SVC.NAME': name,
             'WM_QOS.CORRELATION_ID': uuid(),
