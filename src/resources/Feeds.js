@@ -1,4 +1,4 @@
-module.exports = function(httpClient, version){
+module.exports = function (httpClient, version) {
     let service = {
         getFeedStatus: getFeedStatus,
         getAllFeedStatus: getAllFeedStatus
@@ -12,7 +12,7 @@ module.exports = function(httpClient, version){
      * @param {Number} limit 
      * @param {Number} offset 
      */
-    async function getFeedStatus(feedId,includeDetails = false, limit=50, offset = 0){
+    async function getFeedStatus(feedId, includeDetails = false, limit = 50, offset = 0) {
         try {
             const response = await httpClient.get(`${version}/feeds`, {
                 params: {
@@ -34,7 +34,7 @@ module.exports = function(httpClient, version){
      * @param {Number} limit 
      * @param {Number} offset 
      */
-    async function getAllFeedStatus(feedId= null,limit=50, offset=0){
+    async function getAllFeedStatus(feedId = null, limit = 50, offset = 0) {
         try {
             const response = await httpClient.get(`${version}/feeds`, {
                 params: {
