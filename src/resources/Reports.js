@@ -1,20 +1,35 @@
 module.exports = function (httpClient, version) {
     let service = {
-        multipleReports: multipleReports,
-        availableReconReportDates: availableReconReportDates,
-        reconReport: reconReport
+        getAll: getAll,
+        createReport: createReport,
+        getReport: getReport,
+        downloadReport: downloadReport
     };
     return service;
 
     /**
-     * All the information associated with Seller's items that are set up.
-     * @param {String} type  ["item", "buybox", "cpa", "shippingProgram", "shippingConfiguration", "itemPerformance", "returnOverrides", "promo"]
+     * Fetches a list of all report requests.
      */
-    async function multipleReports(type) {
+    async function getAll() {
         try {
-            const response = await httpClient.get(`${version}/getRerport`, {
+            const response = await httpClient.get(`${version}/reports/reportRequests`);
+            return response.data;
+        } catch (error) {
+            throw error;
+        }
+    }
+
+    /**
+     * Creates a new request for report by specifying the reportType and reportVersion.
+     * @param {String} reportType
+     * @param {String} reportVersion
+     */
+    async function createReport(reportType = "ITEM", reportVersion) {
+        try {
+            const response = await httpClient.post(`${version}/lagtime`, {
                 params: {
-                    type: type
+                    reportType: reportType,
+                    reportVersion: reportVersion
                 }
             });
             return response.data;
@@ -24,12 +39,12 @@ module.exports = function (httpClient, version) {
     }
 
     /**
-     * All the available Marketplace reconciliation report dates for the Seller.
+     * Fetches status and other details of a report request by providing a requestID.
+     * @param {Number} requestId
      */
-
-    async function availableReconReportDates() {
+    async function getReport(requestId) {
         try {
-            const response = await httpClient.get(`${version}/report/reconreport/availableReconFiles`);
+            const response = await httpClient.get(`${version}/reports/reportRequests/${requestId}`);
             return response.data;
         } catch (error) {
             throw error;
@@ -37,16 +52,12 @@ module.exports = function (httpClient, version) {
     }
 
     /**
-     * Seller can download reconciliation report for a specific date.
-     * @param {String} reportDate
+     * Fetches URL to download a generated report.
+     * @param {Number} requestId
      */
-    async function reconReport(reportDate) {
+    async function downloadReport(requestId) {
         try {
-            const response = await httpClient.post(`${version}/report/reconreport/reconFile`, {
-                params: {
-                    reportDate: reportDate
-                }
-            });
+            const response = await httpClient.get(`${version}/reports/downloadReport?requestId=${requestId}`);
             return response.data;
         } catch (error) {
             throw error;
