@@ -1,21 +1,19 @@
-module.exports = function (httpClient, version) {
+module.exports = function(httpClient, version){
     let service = {
-        updateLagTime: updateLagTime,
-        lagTime: lagTime
+        lagTime: lagTime,
+        updateLagTime: updateLagTime
     };
     return service;
 
     /**
-     * Allows the update of lag time for items in bulk.
-     * @param {LagTimeHeader} lagTimeHeader - please refer to this link for object definition (https://developer.walmart.com/api/us/mp/lagtime#operation/updateLagTimeBulk)
-     * @param {LagTime} lagTime  - please refer to this link for object definition (https://developer.walmart.com/api/us/mp/lagtime#operation/updateLagTimeBulk)
+     * Retrieval of Lag Time for an item with a given SKU.
+     * @param {String} sku 
      */
-    async function updateLagTime(lagTimeHeader, lagTime) {
+    async function lagTime(sku){
         try {
-            const response = await httpClient.post(`${version}/feeds?feedType=lagtime`, {
+            const response = await httpClient.get(`${version}/lagtime`, {
                 params: {
-                    lagTimeHeader: lagTimeHeader,
-                    lagTime: lagTime
+                    sku: sku
                 }
             });
             return response.data;
@@ -25,14 +23,16 @@ module.exports = function (httpClient, version) {
     }
 
     /**
-     * Returns the feed statuses for all the specified Feed IDs.
-     * @param {String} sku
+     * Allows update of lag time for items in bulk.
+     * @param {Object} lagTimeHeader
+     * @param {Object} lagTime - for object reference check this link (https://developer.walmart.com/api/us/mp/lagtime#operation/updateLagTimeBulk)
      */
-    async function lagTime(sku) {
+    async function updateLagTime(lagTimeHeader, lagTime){
         try {
-            const response = await httpClient.get(`${version}/lagtime`, {
+            const response = await httpClient.get(`${version}/feeds?feedType=lagtime`, {
                 params: {
-                    sku: sku
+                    lagTimeHeader: lagTimeHeader,
+                    lagTime: lagTime
                 }
             });
             return response.data;

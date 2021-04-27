@@ -40,9 +40,14 @@ module.exports = function (clientId, secretKey, version, name, prod_env) { // In
     Object.assign(wms, {
         auth: require('./resources/Authentication')(httpClient, version),
         feeds: require('./resources/Feeds')(httpClient, version),
-        items: require('./resources/Item')(httpClient, version),
+        insights: require('./resources/Insights')(httpClient, version),
         inventory: require('./resources/Inventory')(httpClient, version),
-        orders: require('./resources/Order')(httpClient, version)
+        items: require('./resources/Item')(httpClient, version),
+        lagtime: require('./resources/LagTime')(httpClient, version),
+        orders: require('./resources/Order')(httpClient, version),
+        price: require('./resources/Price')(httpClient, version),
+        promotion: require('./resources/Promotion')(httpClient, version),
+        reports: require('./resources/Reports')(httpClient, version),
     })
     return wms;
 }
