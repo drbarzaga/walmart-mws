@@ -5,7 +5,8 @@
   "main": "src/walmart-mws.js",
   "license": "MIT",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "version": "git add -A src",
+    "postversion": "git push && git push --tags"
   },
   "keywords": [
     "walmart",
@@ -20,7 +21,7 @@
     "email": "dayan.perez9012@gmail.com"
   },
   "dependencies": {
-    "axios": "0.19.2",
+    "axios": "^0.21.1",
     "moment": "2.27.0",
     "querystring": "0.2.0"
   },
