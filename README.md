@@ -11,10 +11,10 @@ npm install walmart-mws
 ```js
 var walmartMws = require('walmart-mws')(
     'WAL_CLIENT_ID',
-    'WAL_SECRET_KEY', 
-    'HOST', 
+    'WAL_SECRET_KEY',
     'VERSION', 
-    'NAME'
+    'NAME',
+    'PRO_ENV' // optional, default is 'false'
 );
 ```
 
