@@ -1,5 +1,5 @@
 const moment = require('moment');
-const querystring = require('querystring');
+const querystring = require('query-string');
 const Token = require('../models/Token');
 
 module.exports = function(httpClient, version){

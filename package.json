@@ -23,7 +23,7 @@
   "dependencies": {
     "axios": "^0.24.0",
     "moment": "2.29.1",
-    "querystring": "0.2.0"
+    "query-string": "^7.0.1"
   },
   "repository": {
     "type": "git",
