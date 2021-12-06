@@ -4,7 +4,10 @@ This is a wrapper sdk around the [Walmart Marketplace API](https://developer.wal
 
 ## Installation
 ```bash
-npm install walmart-mws
+npm install walmart-mws -- not fixed version
+
+# LGTM
+npm i git+https://github.com/hillwah/walmart-mws.git --save 
 ```
 
 ## Configuration Using JavaScript
@@ -14,7 +17,7 @@ var walmartMws = require('walmart-mws')(
     'WAL_SECRET_KEY',
     'VERSION', 
     'NAME',
-    'PRO_ENV' // optional, default is 'false'
+    'PRO_ENV' // optional, default is ''
 );
 ```
 
