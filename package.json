@@ -1,6 +1,6 @@
 {
   "name": "walmart-mws",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Walmart Marketplace SDK",
   "main": "src/walmart-mws.js",
   "license": "MIT",
@@ -21,9 +21,9 @@
     "email": "dayan.perez9012@gmail.com"
   },
   "dependencies": {
-    "axios": "^0.21.1",
-    "moment": "2.27.0",
-    "querystring": "0.2.0"
+    "axios": "^0.24.0",
+    "moment": "2.29.1",
+    "query-string": "^7.0.1"
   },
   "repository": {
     "type": "git",
