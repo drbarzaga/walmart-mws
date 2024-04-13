@@ -435,3 +435,10 @@ Package | Version
 [axios](https://www.npmjs.com/package/axios) | 0.19.2 
 [moment](https://www.npmjs.com/package/moment) | 2.27.0
 [querystring](https://www.npmjs.com/package/querystring) | 0.2.0
+
+## Contributors
+<a href="https://github.com/drbarzaga/walmart-mws/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=drbarzaga/walmart-mws" />
+</a>
+
+Made with [contrib.rocks](https://contrib.rocks).
