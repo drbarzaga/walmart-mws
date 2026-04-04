@@ -3,27 +3,54 @@
 This is a wrapper sdk around the [Walmart Marketplace API](https://developer.walmart.com). To used this sdk you will need an developer account with the **ClientId** and **ClientSecret** keys.
 
 ## Installation
-```bash
-npm install walmart-mws -- not fixed version
 
-# LGTM
-npm i git+https://github.com/hillwah/walmart-mws.git --save 
+This project uses [Bun](https://bun.sh) for development (`bun.lock`).
+
+```bash
+# Develop / contribute: install dependencies and compile TypeScript
+bun install
+bun run build
 ```
 
-## Configuration Using JavaScript
+```bash
+# Use as a dependency in your app
+bun add walmart-mws
+# or
+npm install walmart-mws
+```
+
+The package ships compiled JavaScript in `dist/` and type definitions (`dist/walmart-mws.d.ts`).
+
+## Configuration (JavaScript)
+
 ```js
-var walmartMws = require('walmart-mws')(
-    'WAL_CLIENT_ID',
-    'WAL_SECRET_KEY',
-    'VERSION', 
-    'NAME',
-    'PRO_ENV' // optional, default is ''
+var walmartMws = require("walmart-mws")(
+  "WAL_CLIENT_ID",
+  "WAL_SECRET_KEY",
+  "https://marketplace.walmartapis.com", // API host (base URL)
+  "v3", // API version path prefix, e.g. v3
+  "WALMART_SERVICE_NAME" // WM_SVC.NAME
+);
+```
+
+## Configuration (TypeScript)
+
+```ts
+import WalmartMws = require("walmart-mws");
+
+const client: WalmartMws.WalmartMwsClient = WalmartMws(
+  "WAL_CLIENT_ID",
+  "WAL_SECRET_KEY",
+  "https://marketplace.walmartapis.com",
+  "v3",
+  "WALMART_SERVICE_NAME"
 );
 ```
 
 ## Feeds
 
 ### Get Feed Status
+
 **Request:**
 
 Available Parameters:<br>
@@ -37,33 +64,36 @@ offset | Number | No | 0
 
 ```js
 try {
-    const result = await walmartMws.feeds.getFeedStatus('5EF8AB43C8B949EAA6DFCDE98FCB3017@AQkBCgB');
-} catch (error) {    
-}
+  const result = await walmartMws.feeds.getFeedStatus(
+    "5EF8AB43C8B949EAA6DFCDE98FCB3017@AQkBCgB"
+  );
+} catch (error) {}
 ```
 
 **Response:**
+
 ```js
-{    
-    feedDate:1596738014958
-    feedId:'5EF8AB43C8B949EAA6DFCDE98FCB3017@AQkBCgB'
-    feedSource:'SELLER'
-    feedStatus:'PROCESSED'
-    feedType:'inventory'
-    itemDataErrorCount:1
-    itemsFailed:1
-    itemsProcessing:0
-    itemsReceived:5118
-    itemsSucceeded:5117
-    itemSystemErrorCount:0
-    itemTimeoutErrorCount:0
-    modifiedDtm:1596738053539
-    orgId:'8744aa2f-3a1f-4e37-8a99-1bef6567f92e'
-    partnerId:'10000010921'
+{
+  feedDate: 1596738014958;
+  feedId: "5EF8AB43C8B949EAA6DFCDE98FCB3017@AQkBCgB";
+  feedSource: "SELLER";
+  feedStatus: "PROCESSED";
+  feedType: "inventory";
+  itemDataErrorCount: 1;
+  itemsFailed: 1;
+  itemsProcessing: 0;
+  itemsReceived: 5118;
+  itemsSucceeded: 5117;
+  itemSystemErrorCount: 0;
+  itemTimeoutErrorCount: 0;
+  modifiedDtm: 1596738053539;
+  orgId: "8744aa2f-3a1f-4e37-8a99-1bef6567f92e";
+  partnerId: "10000010921";
 }
 ```
 
 ## Get All Feed Status
+
 **Request:**
 
 Available Parameters:<br>
@@ -76,12 +106,12 @@ offset | Number | No | 0
 
 ```js
 try {
-    const result = await walmartMws.feeds.getAllFeedStatus();
-} catch (error) {    
-}
+  const result = await walmartMws.feeds.getAllFeedStatus();
+} catch (error) {}
 ```
 
 **Response:**
+
 ```js
 {
     totalResults: 2,
@@ -117,13 +147,14 @@ try {
 ## Items
 
 ### Get All Items
+
 **Request:**
 
 Available Parameters:<br>
 Name| Type | Required | Default
 --- | :---: | :---: | :---:
 nextCursor | String | No |
-sku | String | No | 
+sku | String | No |
 limit | Number | No | 20
 offset | Number | No | 0
 lifecycleStatus | String | No |
@@ -132,11 +163,12 @@ publishedStatus | String | No |
 
 ```js
 try {
-    const result = await walmartMws.items.getAllItems();
-} catch (error) {    
-}
+  const result = await walmartMws.items.getAllItems();
+} catch (error) {}
 ```
+
 **Response:**
+
 ```js
 {
     ItemResponse: [
@@ -168,6 +200,7 @@ try {
 ```
 
 ### Get Item Details
+
 **Request:**
 
 Available Parameters:<br>
@@ -178,11 +211,12 @@ sku | String | **Yes** |
 
 ```js
 try {
-    const result = await walmartMws.items.getItem('192339252042022');
-} catch (error) {    
-}
+  const result = await walmartMws.items.getItem("192339252042022");
+} catch (error) {}
 ```
+
 **Response:**
+
 ```js
 {
     gtin:'00192503120223'
@@ -195,7 +229,7 @@ try {
     productName:'Product name',
     productType:'Product type'
     publishedStatus:'PUBLISHED'
-    shelf: [ 
+    shelf: [
         "Shelf1",
         "Shelf2",
     ],
@@ -206,7 +240,8 @@ try {
 ```
 
 ### Get Taxonomy
-**Request:** 
+
+**Request:**
 
 Available Parameters:<br>
 Name| Type | Required | Default
@@ -219,12 +254,12 @@ subcategoryId | String | No |
 
 ```js
 try {
-    const result = await walmartMws.items.getTaxonomy('Search');
-} catch (error) {    
-}
+  const result = await walmartMws.items.getTaxonomy("Search");
+} catch (error) {}
 ```
 
 ### Retire Item
+
 **Request:**
 
 Available Parameters:<br>
@@ -232,18 +267,17 @@ Name| Type | Required | Default
 --- | :---: | :---: | :---:
 sku | String | <span style="color: red">**Yes**</span> |
 
-
 <span style="color: red">**Note:**</span> You can't reuse the SKU or Product ID from a retired item. If you need to change the SKU or Product ID, see Product ID & SKU section.
 <br>
 
 ```js
 try {
-    const result = await walmartMws.items.retireItem('97964898989');
-} catch (error) {    
-}
+  const result = await walmartMws.items.retireItem("97964898989");
+} catch (error) {}
 ```
 
 **Response:**
+
 ```js
 {
   "sku": "97964898989",
@@ -254,6 +288,7 @@ try {
 ```
 
 ### Bulk Item Retire
+
 **Request:**
 
 Available Parameters:<br>
@@ -266,9 +301,8 @@ file | String | <span style="color: red">**Yes**</span> |
 
 ```js
 try {
-    const result = await walmartMws.items.bulkRetireItem('RETIRE_ITEM', file);
-} catch (error) {    
-}
+  const result = await walmartMws.items.bulkRetireItem("RETIRE_ITEM", file);
+} catch (error) {}
 ```
 
 ```js
@@ -282,6 +316,7 @@ try {
 ## Promotions
 
 ### Promotional Prices
+
 **Request:**
 
 Available Parameters:<br>
@@ -292,12 +327,12 @@ sku | String | <span style="color: red">**Yes**</span> |
 
 ```js
 try {
-    const result = await walmartMws.promotions.getPromotionalPrices('97964787878');
-} catch (error) {    
-}
+  const result = await walmartMws.promotions.getPromotionalPrices("97964787878");
+} catch (error) {}
 ```
 
 **Response:**
+
 ```js
 {
     status: "OK",
@@ -365,10 +400,10 @@ try {
   }
 ```
 
-
 ## Inventory
 
 ### Get Item Inventory
+
 **Request:**
 
 Available Parameters:<br>
@@ -379,22 +414,24 @@ sku | String | <span style="color: red">**Yes**</span> |
 
 ```js
 try {
-    const result = await walmartMws.inventory.getItemInventory('192503120522');
-} catch (error) {    
-}
+  const result = await walmartMws.inventory.getItemInventory("192503120522");
+} catch (error) {}
 ```
+
 **Response:**
+
 ```js
 {
     sku:'192503120522',
     quantity:{
-        unit: 'EACH', 
+        unit: 'EACH',
         amount: 30
     }
 }
 ```
 
 ### Update Item Inventory
+
 **Request:**
 
 Available Parameters:<br>
@@ -406,23 +443,24 @@ data| Object | <span style="color: red">**Yes**</span> |
 
 ```js
 let data = {
-    sku:'192503120522',
-    quantity:{
-        unit: 'EACH', 
-        amount: 0
-    }
+  sku: "192503120522",
+  quantity: {
+    unit: "EACH",
+    amount: 0,
+  },
 };
 try {
-    const result = await walmartMws.inventory.updateItemInventory('192503120522', data);
-} catch (error) {    
-}
+  const result = await walmartMws.inventory.updateItemInventory("192503120522", data);
+} catch (error) {}
 ```
+
 **Response:**
+
 ```js
 {
     sku:'192503120522',
     quantity:{
-        unit: 'EACH', 
+        unit: 'EACH',
         amount: 0
     }
 }
@@ -430,13 +468,14 @@ try {
 
 ## Dependencies
 
-Package | Version
---- |:---:
-[axios](https://www.npmjs.com/package/axios) | 0.19.2 
-[moment](https://www.npmjs.com/package/moment) | 2.27.0
-[querystring](https://www.npmjs.com/package/querystring) | 0.2.0
+| Package                                                    |                      Version                      |
+| ---------------------------------------------------------- | :-----------------------------------------------: |
+| HTTP                                                       | `fetch` (Node 18+ / Bun / navegadores; sin axios) |
+| [moment](https://www.npmjs.com/package/moment)             |                      2.29.1                       |
+| [query-string](https://www.npmjs.com/package/query-string) |                      ^7.0.1                       |
 
 ## Contributors
+
 <a href="https://github.com/drbarzaga/walmart-mws/graphs/contributors">
   <img src="https://contrib.rocks/image?repo=drbarzaga/walmart-mws" />
 </a>
